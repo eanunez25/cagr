@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CAGR</title>
+  <style>
+    input {
+      font-size: 12px;
+      margin: 10px 1px 0;
+    }
+  </style>
+</head>
+<body>
+  <label for='initialPrice'>Initial Price:</label>
+  <input class="initialPrice" type="text"><br>
+  <label for='endPrice'>End Price:</label>
+  <input class="endPrice" type="text"><br>
+  <label for='n'>Years:</label>
+  <input class="n" type="text">
+  <p></p>
+
+  <script>
+
+    const para = document.querySelector('p');
+    const bv = document.querySelector('.initialPrice');
+    const fv = document.querySelector('.endPrice');
+    const years = document.querySelector('.n');
+
+    function cagr(bv, fv, years) {
+        let gainz = ((fv/bv) ** (1/years) - 1) * 100;
+        gainz = gainz.toFixed(2);
+        // let results =  `${years}-year CAGR: ` + gainz + '%';
+        return gainz;
+    }
+
+    years.onchange = function() {
+      const begin = bv.value;
+      const end = fv.value;
+      const n = years.value;
+      para.textContent = `${n}-year CAGR: ` + cagr(begin, end, n) + '%';
+    }
+
+  </script>
+</body>
+</html>
